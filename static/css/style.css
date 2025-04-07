@@ -1,0 +1,176 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #2c3e50;
+    --success-color: #27ae60;
+    --danger-color: #e74c3c;
+    --background-color: #f5f6fa;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.upload-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.upload-box {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.upload-box h2 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.upload-area {
+    border: 2px dashed var(--primary-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    background: rgba(74, 144, 226, 0.05);
+}
+
+.upload-content i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.file-name {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.record-btn, .analyze-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.record-btn:hover, .analyze-btn:hover {
+    background: #357abd;
+}
+
+.analyze-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.results {
+    margin-top: 2rem;
+}
+
+.result-box {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--box-shadow);
+}
+
+.result-box h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.prediction {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.prediction.positive {
+    color: var(--danger-color);
+}
+
+.prediction.negative {
+    color: var(--success-color);
+}
+
+.confidence {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.risk-factors {
+    margin-top: 1rem;
+}
+
+.risk-factors ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.risk-factors li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.risk-factors li:before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: -1rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}

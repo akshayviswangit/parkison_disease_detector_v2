@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkinson's Disease Multi-Modal Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Parkinson's Disease Detector</h1>
+            <p>Upload voice recording and/or handwriting sample for analysis</p>
+        </header>
+
+        <div class="upload-section">
+            <div class="upload-box" id="voice-upload">
+                <h2>Voice Analysis</h2>
+                <div class="upload-area" id="voice-drop-area">
+                    <input type="file" id="voice-input" accept=".wav" hidden>
+                    <div class="upload-content">
+                        <i class="fas fa-microphone"></i>
+                        <p>Drop voice file or click to upload</p>
+                        <span class="file-name" id="voice-file-name"></span>
+                    </div>
+                </div>
+                <button class="record-btn" id="record-btn">Record Voice (5s)</button>
+            </div>
+
+            <div class="upload-box" id="handwriting-upload">
+                <h2>Handwriting Analysis</h2>
+                <div class="upload-area" id="handwriting-drop-area">
+                    <input type="file" id="handwriting-input" accept=".png,.jpg,.jpeg" hidden>
+                    <div class="upload-content">
+                        <i class="fas fa-image"></i>
+                        <p>Drop image or click to upload</p>
+                        <span class="file-name" id="handwriting-file-name"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="analyze-btn" id="analyze-btn" disabled>Analyze</button>
+
+        <div class="results" id="results">
+            <div class="result-box combined-result hidden">
+                <h3>Combined Analysis</h3>
+                <div class="result-content"></div>
+            </div>
+            <div class="result-box voice-result hidden">
+                <h3>Voice Analysis</h3>
+                <div class="result-content"></div>
+            </div>
+            <div class="result-box handwriting-result hidden">
+                <h3>Handwriting Analysis</h3>
+                <div class="result-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

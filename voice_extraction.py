@@ -25,8 +25,18 @@ def record_audio(duration=5, sample_rate=22050, output_file="user_audio.wav"):
 
 def extract_features(file_path):
     """Extract features from an audio file."""
-    # Load the audio file
-    y, sr = librosa.load(file_path, sr=None)
+    try:
+        # First try with default parameters
+        y, sr = librosa.load(file_path, sr=None)
+    except Exception as e:
+        try:
+            # If failed, try with specific sample rate
+            y, sr = librosa.load(file_path, sr=22050, mono=True)
+        except Exception as e:
+            print(f"Error loading audio file: {str(e)}")
+            # Return default features with zero values
+            return create_default_features()
+            
     features = {}
     
     # 1. Fundamental frequency features
@@ -87,6 +97,17 @@ def extract_features(file_path):
             features[key] = 0.0
     
     return features
+
+def create_default_features():
+    """Create a default feature dictionary with zero values."""
+    feature_names = [
+        'MDVP:Fo(Hz)', 'MDVP:Fhi(Hz)', 'MDVP:Flo(Hz)', 'MDVP:Jitter(%)', 
+        'MDVP:Jitter(Abs)', 'MDVP:RAP', 'MDVP:PPQ', 'Jitter:DDP', 
+        'MDVP:Shimmer', 'MDVP:Shimmer(dB)', 'Shimmer:APQ3', 'Shimmer:APQ5',
+        'MDVP:APQ', 'Shimmer:DDA', 'NHR', 'HNR', 'RPDE', 'DFA',
+        'spread1', 'spread2', 'D2', 'PPE'
+    ]
+    return {name: 0.0 for name in feature_names}
 
 def save_features_to_csv(features, output_csv):
     """
