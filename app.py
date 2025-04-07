@@ -93,8 +93,8 @@ def late_fusion(voice_result, handwriting_result):
     voice_score = 1 if voice_result['prediction'] == "Yes" else 0
     hw_score = 1 if handwriting_result['prediction'] == "Yes" else 0
     
-    voice_weight = 0.6
-    hw_weight = 0.4
+    voice_weight = 0.5
+    hw_weight = 0.5
     
     combined_score = (voice_score * voice_weight + hw_score * hw_weight)
     final_prediction = "Yes" if combined_score >= 0.5 else "No"
