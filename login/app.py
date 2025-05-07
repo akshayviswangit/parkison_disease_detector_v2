@@ -4,6 +4,7 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
+# Create user table if it doesn't exist
 def init_db():
     with sqlite3.connect('users.db') as conn:
         conn.execute('''CREATE TABLE IF NOT EXISTS users (
@@ -17,6 +18,8 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    
+    print("Login page accessed")  # Add this for debug
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -27,7 +30,7 @@ def login():
         if user:
             session['username'] = username
             flash('Login successful!', 'success')
-            return redirect("http://127.0.0.1:5000/")
+            return redirect("http://127.0.0.1:5000/")  # Redirect to your main app
         else:
             flash('Invalid Credentials', 'danger')
     return render_template('login.html')
@@ -49,4 +52,4 @@ def register():
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True, port=3000)
+    app.run(debug=True, port=3000)  # Run LoginRrg.ap on a different port
